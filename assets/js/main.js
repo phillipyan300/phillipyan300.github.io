@@ -5,6 +5,7 @@
 */
 
 (function($) {
+	console.log("basic")
 
 	var $window = $(window),
 		$body = $('body'),
@@ -28,7 +29,8 @@
 				$body.removeClass('is-preload');
 			}, 100);
 		});
-
+		
+		console.log("basic2")
 	// Tweaks/fixes.
 
 		// Polyfill: Object fit.
@@ -53,12 +55,12 @@
 				});
 
 			}
-
+			console.log("basic3")
 	// Header Panel.
 
 		// Nav.
 			var $nav_a = $nav.find('a');
-
+			console.log("basic4")
 			$nav_a
 				.addClass('scrolly')
 				.on('click', function() {
@@ -66,16 +68,18 @@
 					var $this = $(this);
 
 					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
-							return;
+					if ($this.attr('href').charAt(0) != '#'){
+						console.log("external link");
+						return;
+					}
 
 					// Deactivate all links.
-						$nav_a.removeClass('active');
+					$nav_a.removeClass('active');
 
 					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-						$this
-							.addClass('active')
-							.addClass('active-locked');
+					$this
+						.addClass('active')
+						.addClass('active-locked');
 
 				})
 				.each(function() {
@@ -157,3 +161,44 @@
 		});
 
 })(jQuery);
+
+
+// Slider image
+var currentSlide = 0;
+var slides = document.getElementsByClassName("slides")
+console.log("initial");
+function checkSlides(){
+	if(slides.length > 0) {
+		slides[currentSlide].style.display = 'block';
+	} else {
+		console.error('No slides found');
+	}
+}
+ // Log the slides array to check its contents
+
+
+function showSlide(index) {
+	slides[currentSlide].style.display = 'none';
+	console.log(slides.length, index, currentSlide);
+	currentSlide = ((index % slides.length) + slides.length) % slides.length;
+	slides[currentSlide].style.display = 'block';
+}
+
+function nextSlide() {
+	// console.log("clicked next");
+	checkSlides()
+	showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+	// console.log("clicked before");
+	showSlide(currentSlide - 1);
+}
+
+
+// Resume Button
+document.getElementById('resumeButton').addEventListener('click', function() {
+    window.location.href = 'https://drive.google.com/file/d/1NRu7CM2-Qt_FkMK03XkVQ-FxYCxBWPLH/view?usp=sharing';
+});
+
+

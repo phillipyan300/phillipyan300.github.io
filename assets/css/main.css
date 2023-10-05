@@ -7,6 +7,29 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+#resumeButton {
+    display: inline-block;
+    padding: 15px 40px; /* Adjust padding as needed */
+    background-color: #50ccac; /* Button background color */
+    color: #fff; /* Text color */
+    border:  1px solid #50ccac;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+
+
+	position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Hover effect */
+#resumeButton:hover {
+    background-color: #ffffff; /* Button background color on hover */
+	color: #50ccac; /* Text color */
+}
+
 
 .icon.image.example {
 	height: .15em;
@@ -2702,11 +2725,69 @@ input, select, textarea {
 			padding-top: 0;
 		}
 
+		/* Image Slider CSS */
+		#slider {
+			position: relative;
+			width: 250px;
+			height: 250px;
+			overflow: hidden;
+			/* Maybe delete below? */
+		}
+		/* .features article .image {
+			display: inline-block;
+			padding-right: 2.5em;
+			vertical-align: middle;
+			/*Original was 48
+			width: 40%;
+		} 
+		*/
+		
+		#slider img {
+			width: 100%; /* Make the image width 100% of the container */
+			height: 100%; /* Make the image height 100% of the container */
+			object-fit: cover; /* Scale the image while maintaining aspect ratio */
+			
+		}
+		
+		.slides {
+			display: none;
+			position: absolute;
+			width: 100%; 
+			height: 100%; 
+			/* one of these three makes it so that when you resize windo the image doesn't cover the text */
+			
+			vertical-align: middle;
+		}
+
+		.slides#slide1 {
+			display: block;
+			position: absolute;
+			width: 100%; 
+			height: 100%; 
+		}
+
+		.navigation {
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			transform: translateY(-50%);
+		}
+		.arrow {
+			background-color: rgba(255,255,255,0.5);
+			border: none;
+			padding: 10px;
+			cursor: pointer;
+		}
+  
+
 		.features article .image {
 			display: inline-block;
 			padding-right: 2.5em;
 			vertical-align: middle;
-			width: 48%;
+			/*Original was 48*/
+			width: 40%;
 		}
 
 			.features article .image img {
