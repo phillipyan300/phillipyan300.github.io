@@ -19,8 +19,11 @@
 	border-right: .15em solid orange; /* The typwriter cursor */
 	font-size: 1.6rem;
 	width: 0;
+	animation: typing 4s steps(40, end) 0s 1 forwards,
+                blink-caret .75s step-end infinite;
   }
   
+  /* Keyframes defines animations, with a from (previous state) and a to (end state) which can then be called with animation as above
   /* The typing effect */
   @keyframes typing {
 	from { width: 0 }
