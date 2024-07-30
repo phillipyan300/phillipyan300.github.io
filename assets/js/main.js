@@ -198,7 +198,7 @@ function prevSlide() {
 
 // Resume Button
 document.getElementById('resumeButton').addEventListener('click', function() {
-    window.location.href = 'https://drive.google.com/file/d/1C8fY1Ka2U_JwLtu1lF_T6J4UNgU7vdkA/view?usp=sharing';
+    window.location.href = 'https://drive.google.com/file/d/1rC2uN8smUjdl03Z6f6rGe9DJUgjMpYRV/view?usp=sharing';
 });
 
 
