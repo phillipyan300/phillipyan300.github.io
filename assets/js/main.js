@@ -162,6 +162,8 @@
 
 })(jQuery);
 
+// Remove dropdown/collapsible Software Development section JS. No toggleSoftwareSection or related event handlers.
+
 
 // Slider image
 var currentSlide = 0;

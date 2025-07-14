@@ -1,2 +1,35 @@
-LICENSE.txt
-*..*/
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# Editor swap/backup files
+*.swp
+*.swo
+*~
+
+# VSCode
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
+
+# SASS cache
+.sass-cache/
+
+# Other system files
+Thumbs.db
+Desktop.ini
