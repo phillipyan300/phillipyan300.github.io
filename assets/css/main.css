@@ -2820,7 +2820,7 @@ input, select, textarea {
 		-webkit-justify-content: space-between;
 		-ms-justify-content: space-between;
 		justify-content: space-between;
-		background: #4acaa8;
+		background: #232a33; /* Muted blue-gray */
 		color: #d2f2e9;
 		height: 100%;
 		overflow-y: auto;
@@ -2909,26 +2909,25 @@ input, select, textarea {
 			}
 
 				#header > nav ul li {
-					border-top: solid 2px #5ccfb1;
+					border-top: 2px solid #3a444c;
 					display: block;
 					padding: 0;
 				}
 
 					#header > nav ul li a {
-						-moz-transition: none;
-						-webkit-transition: none;
-						-ms-transition: none;
-						transition: none;
-						border: 0;
-						color: #ffffff !important;
+						color: #d2f2e9 !important;
+						background: transparent;
+						transition: background 0.2s, color 0.2s, border-left 0.2s;
+						border-left: 4px solid transparent;
 						display: block;
 						padding: 0.85em 0;
 						text-decoration: none;
 					}
 
 						#header > nav ul li a.active {
-							background: #fff;
+							background: #2d3a3f;
 							color: #4acaa8 !important;
+							border-left: 4px solid #4acaa8;
 						}
 
 					#header > nav ul li:first-child {
@@ -3492,6 +3491,27 @@ input, select, textarea {
   display: block;
 }
 
+.project-image-box {
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  margin: 0 auto 1em auto;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+.project-image-box img {
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: contain;
+  display: block;
+}
+
 /* Fix for jQuery slideToggle with grid containers */
 .software-features {
   display: none;
@@ -3503,4 +3523,24 @@ input, select, textarea {
 .software-features-inner {
   display: block;
   width: 100%;
+}
+
+.features article {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+  width: 100% !important;
+  margin: 0 !important;
+}
+.features article .image {
+  flex-shrink: 0;
+}
+.features article .inner {
+  flex-grow: 1;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100% !important;
+  padding-right: 0 !important;
+  vertical-align: initial !important;
 }
