@@ -26,6 +26,8 @@ yarn-error.log*
 # Build output
 dist/
 build/
+.next/
+out/
 
 # SASS cache
 .sass-cache/
