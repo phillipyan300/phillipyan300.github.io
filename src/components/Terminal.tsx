@@ -5,19 +5,47 @@ import { useRouter } from "next/navigation";
 
 // --- Welcome Box ---
 
-const WELCOME_BOX = [
-  "\u256D\u2500\u2500\u2500 philyan.com \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E",
-  "\u2502                              \u2502 Getting started                            \u2502",
-  "\u2502   Welcome to Phillip's site   \u2502 Try \"what have you built?\" or \"cd projects\" \u2502",
-  "\u2502                              \u2502 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 \u2502",
-  "\u2502        \u2597 \u2597   \u2596 \u2596             \u2502 Sections                                   \u2502",
-  "\u2502                              \u2502   home/  reading/  writing/  projects/       \u2502",
-  "\u2502          \u2598\u2598 \u259D\u259D               \u2502 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 \u2502",
-  "\u2502   Columbia '25 \u00B7 CS+Math    \u2502 Quick commands                              \u2502",
-  "\u2502   exploring energy markets  \u2502   help \u00B7 ls \u00B7 whoami \u00B7 contact \u00B7 twitter       \u2502",
-  "\u2502        ~/phillip            \u2502                                             \u2502",
-  "\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256F",
-].join("\n");
+function WelcomeBox() {
+  return (
+    <div className="mb-4" style={{ fontSize: "12px", lineHeight: "1.7" }}>
+      <div className="inline-block rounded border border-[#da7756] px-3 py-1">
+        <span className="text-[#da7756] font-bold">🦀 Phillip Code v1.2</span>
+      </div>
+
+      <div className="mt-4 flex gap-8 text-[#e0e0e0]">
+        {/* Left column */}
+        <div className="flex-shrink-0">
+          <div className="font-bold text-white">Welcome back!</div>
+          <pre className="mt-2">{`    ██  ██
+  ██████████
+  ██▓▓██▓▓██
+  ██████████
+    ██  ██
+    ██  ██`}</pre>
+          <div className="mt-2 text-[#a0a0b0]">Columbia &apos;26 · CS+Math</div>
+          <div className="text-[#a0a0b0]">~/philyan.com</div>
+        </div>
+
+        {/* Right column */}
+        <div className="flex-1 min-w-0">
+          <div className="text-[#da7756] font-bold">Tips for getting started</div>
+          <div className="text-[#585868]">──────────────────────────────────────────────────</div>
+          <div className="mt-1">
+            Try &quot;what have you built?&quot;<br />
+            or &quot;cd projects&quot;
+          </div>
+
+          <div className="mt-3 text-[#da7756] font-bold">Sections</div>
+          <div>home/  reading/  writing/  projects/  energy/</div>
+
+          <div className="mt-3 text-[#da7756] font-bold">Quick commands</div>
+          <div>help · ls · whoami · dark · thesis</div>
+          <div>contact · twitter · light</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // --- Command Handling ---
 
@@ -31,10 +59,11 @@ const HELP_TEXT = `Available commands:
   cd <section>      Navigate to a section
   cd ..             Go home
   whoami            About Phillip
-  cat thesis.txt    What I'm working on
+  cat thesis.txt    Open energy thesis
   cat resume.txt    Open resume
   contact           Show contact info
   twitter           Open Twitter
+  dark / light      Toggle dark/light mode
   clear             Clear terminal
   echo <text>       Echo text back`;
 
@@ -56,7 +85,7 @@ by electricity cost -- though also energy traders and grid operators given how
 fragmented their current data tooling is.`;
 
 const WHOAMI =
-  "Phillip Yan -- Columbia '25, Math & CS. Previously at Coinbase & Expedition Technology. Now exploring energy markets -- building the unified data and reasoning layer for the US power grid.";
+  "Phillip Yan -- Columbia '26, Math & CS. Previously at 0x, Coinbase & Expedition Technology. Interested in all things energy.";
 
 const CONTACT = `Email:   pmy2105@columbia.edu
 GitHub:  github.com/phillipyan300
@@ -119,9 +148,24 @@ function matchCommand(
     return { output: WHOAMI };
   }
 
-  // cat thesis.txt
+  // cat thesis.txt / thesis -> navigate to /energy
   if (trimmed === "cat thesis.txt" || trimmed === "thesis") {
-    return { output: THESIS };
+    return {
+      output: "Navigating to energy thesis...",
+      action: () => navigate("/energy"),
+    };
+  }
+
+  // dark mode / light mode toggle
+  if (/^(dark|light|dark mode|light mode|toggle theme)$/i.test(trimmed)) {
+    const wantsDark = /^(dark|dark mode)$/i.test(trimmed);
+    return {
+      output: `Switching to ${wantsDark ? "dark" : "light"} mode...`,
+      action: () => {
+        document.documentElement.classList.toggle("dark", wantsDark);
+        localStorage.setItem("theme", wantsDark ? "dark" : "light");
+      },
+    };
   }
 
   // cat resume.txt
@@ -161,7 +205,10 @@ function matchCommand(
 
   // thesis / energy / what are you working on
   if (/\b(thesis|energy|grid|power|lmp|working on|exploring)\b/i.test(trimmed)) {
-    return { output: THESIS };
+    return {
+      output: "Navigating to energy thesis...",
+      action: () => navigate("/energy"),
+    };
   }
 
   // projects / what have you built
@@ -318,7 +365,7 @@ export default function Terminal() {
             setMinimized(false);
             setOpen(true);
           }}
-          className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-w-[720px] items-center justify-between rounded-t-lg bg-[#1e1e2e] px-5 py-2.5 shadow-lg transition-all hover:py-3"
+          className="fixed inset-x-0 bottom-0 z-50 mx-auto flex max-w-4xl w-[90vw] items-center justify-between rounded-t-lg bg-[#1e1e2e] px-5 py-2.5 shadow-lg transition-all hover:py-3"
         >
           <div className="flex items-center gap-3">
             <span className="text-xs text-[#da7756]">phillip &gt;_</span>
@@ -351,12 +398,12 @@ export default function Terminal() {
 
       {/* Terminal drawer */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-50 mx-auto max-w-[720px] transition-transform duration-300 ease-out ${
+        className={`fixed inset-x-0 bottom-0 z-50 mx-auto max-w-4xl w-[90vw] transition-transform duration-300 ease-out ${
           open ? "translate-y-0" : "translate-y-full"
         }`}
         style={{ height: "60vh" }}
       >
-        <div className="flex h-full flex-col rounded-t-xl bg-[#1e1e2e] shadow-2xl">
+        <div className="flex h-full flex-col rounded-t-xl border border-b-0 border-[#da7756] bg-[#1e1e2e] shadow-2xl">
           {/* Title bar */}
           <div className="flex items-center justify-between border-b border-[#585868] px-4 py-2">
             <div className="flex gap-2">
@@ -380,9 +427,7 @@ export default function Terminal() {
             onClick={() => inputRef.current?.focus()}
           >
             {/* Welcome box */}
-            <pre className="mb-4 text-[#e0e0e0]" style={{ fontSize: "12px", lineHeight: "1.6" }}>
-              {WELCOME_BOX}
-            </pre>
+            <WelcomeBox />
 
             {/* Output history */}
             {lines.map((line, i) => (
