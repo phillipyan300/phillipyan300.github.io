@@ -269,7 +269,7 @@ export default function Book3D({ book }: Book3DProps) {
       coverMat, // -X (butts against spine, no overlap)
       coverMat, // +Y top lip
       coverMat, // -Y bottom lip
-      new THREE.MeshStandardMaterial({ map: coverTexture, roughness: 0.5, bumpMap: coverBump, bumpScale: 0.008 }), // +Z front
+      new THREE.MeshStandardMaterial({ map: coverTexture, roughness: 0.85, metalness: 0, bumpMap: coverBump, bumpScale: 0.008 }), // +Z front
       coverMat, // -Z inside
     ],
     [coverMat, coverTexture]

@@ -218,7 +218,6 @@ export default function Bookshelf({ books, onSelectBook }: BookshelfProps) {
                   transformOrigin: "right",
                   transform: `rotateY(${isOpen ? "-60deg" : "0deg"})`,
                   transformStyle: "preserve-3d",
-                  filter: "brightness(0.8) contrast(2)",
                   transition: "all 500ms ease",
                   willChange: "auto",
                 }}
@@ -228,7 +227,7 @@ export default function Bookshelf({ books, onSelectBook }: BookshelfProps) {
                   style={{
                     height: BOOK_H,
                     width: sw,
-                    opacity: 0.4,
+                    opacity: 0.15,
                     filter: "url(#paper)",
                   }}
                 />
@@ -247,28 +246,24 @@ export default function Bookshelf({ books, onSelectBook }: BookshelfProps) {
               <div
                 className="relative flex-shrink-0 overflow-hidden"
                 style={{
+                  height: BOOK_H,
                   transformOrigin: "left",
                   transform: `rotateY(${isOpen ? "30deg" : "88.8deg"})`,
                   transformStyle: "preserve-3d",
-                  filter: "brightness(0.8) contrast(2)",
                   transition: "all 500ms ease",
                   willChange: "auto",
                 }}
               >
                 <span
-                  className="pointer-events-none fixed top-0 right-0 z-50"
+                  className="pointer-events-none absolute inset-0 z-50"
                   style={{
-                    height: BOOK_H,
-                    width: COVER_W,
-                    opacity: 0.4,
+                    opacity: 0.15,
                     filter: "url(#paper)",
                   }}
                 />
                 <span
-                  className="pointer-events-none absolute top-0 left-0 z-50"
+                  className="pointer-events-none absolute inset-0 z-50"
                   style={{
-                    height: BOOK_H,
-                    width: COVER_W,
                     background:
                       "linear-gradient(to right, rgba(255,255,255,0) 2px, rgba(255,255,255,0.5) 3px, rgba(255,255,255,0.25) 4px, rgba(255,255,255,0.25) 6px, transparent 7px, transparent 9px, rgba(255,255,255,0.25) 9px, transparent 12px)",
                   }}
@@ -277,9 +272,9 @@ export default function Bookshelf({ books, onSelectBook }: BookshelfProps) {
                   src={book.coverImage}
                   alt={book.title}
                   style={{
-                    width: COVER_W,
                     height: BOOK_H,
-                    objectFit: "cover",
+                    width: "auto",
+                    display: "block",
                     transition: "all 500ms ease",
                     willChange: "auto",
                   }}

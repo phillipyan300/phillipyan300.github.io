@@ -16,8 +16,8 @@ export default function BookCanvas({ book }: BookCanvasProps) {
       camera={{ position: [0, 0, 6], fov: 45 }}
       style={{ width: "100%", height: "100%" }}
     >
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
+      <ambientLight intensity={0.9} />
+      <directionalLight position={[5, 5, 5]} intensity={0.6} />
       <Suspense fallback={null}>
         <Book3D book={book} />
         <ContactShadows
@@ -26,7 +26,6 @@ export default function BookCanvas({ book }: BookCanvasProps) {
           scale={8}
           blur={2}
         />
-        <Environment preset="studio" />
       </Suspense>
       <OrbitControls
         enablePan={false}
