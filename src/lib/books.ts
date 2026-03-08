@@ -57,17 +57,6 @@ export function spineWidthPx(pages?: number): number {
 
 export const BOOKS: Book[] = [
   {
-    title: "The Master and Margarita",
-    author: "Mikhail Bulgakov",
-    spineColor: "#8B0000",
-    textColor: "#f5f5dc",
-    coverImage: "/covers/master-and-margarita.jpg",
-    date: "2025",
-    rating: 10,
-    slug: "master-and-margarita",
-    pages: 384,
-  },
-  {
     title: "Sapiens",
     author: "Yuval Noah Harari",
     spineColor: "#1a1a2e",

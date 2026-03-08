@@ -2,6 +2,13 @@
 
 import { useState, useRef, useEffect, useCallback, type KeyboardEvent } from "react";
 import { useRouter } from "next/navigation";
+import { keywordSearch } from "@/lib/terminal-ai";
+import {
+  loadModel,
+  generate,
+  isModelLoaded,
+  isModelLoading,
+} from "@/lib/web-llm";
 
 // --- Welcome Box ---
 
@@ -41,6 +48,10 @@ function WelcomeBox() {
           <div className="mt-3 text-[#da7756] font-bold">Quick commands</div>
           <div>help · ls · whoami · dark · thesis</div>
           <div>contact · twitter · light</div>
+
+          <div className="mt-3 text-[#da7756] font-bold">In-browser AI <span className="text-[#585868] font-normal">(experimental)</span></div>
+          <div>Type <span className="text-white">&quot;ai on&quot;</span> to load a fully</div>
+          <div>client-side AI model (~200 MB, no servers)</div>
         </div>
       </div>
     </div>
@@ -49,7 +60,7 @@ function WelcomeBox() {
 
 // --- Command Handling ---
 
-type OutputLine = { type: "input" | "output" | "error"; text: string };
+type OutputLine = { type: "input" | "output" | "error" | "thinking"; text: string };
 
 const SECTIONS = ["home", "reading", "writing", "projects"] as const;
 
@@ -65,7 +76,8 @@ const HELP_TEXT = `Available commands:
   twitter           Open Twitter
   dark / light      Toggle dark/light mode
   clear             Clear terminal
-  echo <text>       Echo text back`;
+  echo <text>       Echo text back
+  ai on             Load in-browser AI (~200 MB, fully client-side)`;
 
 const THESIS = `Energy data is fragmented and priced differently at every node because
 transmission constraints, weather, and demand curves interact in non-obvious
@@ -94,7 +106,7 @@ Twitter: twitter.com/PhillipYan2`;
 function matchCommand(
   input: string,
   navigate: (path: string) => void
-): { output: string; action?: () => void } {
+): { output: string; action?: () => void; isUnknown?: boolean } {
   const trimmed = input.trim().toLowerCase();
   const raw = input.trim();
 
@@ -270,6 +282,7 @@ function matchCommand(
 
   return {
     output: `Command not found: ${raw}. Type "help" for available commands.`,
+    isUnknown: true,
   };
 }
 
@@ -280,6 +293,9 @@ export default function Terminal() {
   const [minimized, setMinimized] = useState(false);
   const [lines, setLines] = useState<OutputLine[]>([]);
   const [input, setInput] = useState("");
+  const [aiEnabled, setAiEnabled] = useState(false);
+  const [aiProgress, setAiProgress] = useState<string | null>(null);
+  const [aiProgressPct, setAiProgressPct] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -326,7 +342,38 @@ export default function Terminal() {
     }
   }, [lines]);
 
-  function handleSubmit(e: KeyboardEvent<HTMLInputElement>) {
+  async function startAi() {
+    if (isModelLoaded() || isModelLoading()) return;
+    setAiProgress("Initializing in-browser AI...");
+    setAiProgressPct(0);
+
+    try {
+      await loadModel((report) => {
+        setAiProgress(report.text);
+        // Extract percentage from progress text if available
+        const match = report.text.match(/([\d.]+)%/);
+        if (match) setAiProgressPct(parseFloat(match[1]));
+      });
+      setAiEnabled(true);
+      setAiProgress(null);
+      setLines((prev) => [
+        ...prev,
+        {
+          type: "output",
+          text: "🧠 In-browser AI loaded. Fully client-side, no servers. This is experimental and may give rough answers. Ask me anything about Phillip!",
+        },
+      ]);
+    } catch (err) {
+      setAiProgress(null);
+      const msg =
+        err instanceof Error && err.message.includes("WebGPU")
+          ? "Your browser doesn't support WebGPU. Try Chrome 113+ or Edge 113+."
+          : "Failed to load the AI model. Your device may not support it.";
+      setLines((prev) => [...prev, { type: "error", text: msg }]);
+    }
+  }
+
+  async function handleSubmit(e: KeyboardEvent<HTMLInputElement>) {
     if (e.key !== "Enter") return;
     const value = input.trim();
     if (!value) return;
@@ -337,22 +384,84 @@ export default function Terminal() {
       return;
     }
 
-    const result = matchCommand(value, navigate);
-    const newLines: OutputLine[] = [
-      { type: "input", text: value },
-    ];
-    if (result.output) {
-      newLines.push({ type: "output", text: result.output });
+    // Handle "ai on" command
+    if (/^(ai\s*on|enable\s*ai|load\s*ai|start\s*ai)$/i.test(value)) {
+      setLines((prev) => [
+        ...prev,
+        { type: "input", text: value },
+      ]);
+      setInput("");
+      startAi();
+      return;
     }
 
-    setLines((prev) => [...prev, ...newLines]);
+    // Tier 1: Pattern matching
+    const result = matchCommand(value, navigate);
+
+    if (!result.isUnknown) {
+      const newLines: OutputLine[] = [{ type: "input", text: value }];
+      if (result.output) {
+        newLines.push({ type: "output", text: result.output });
+      }
+      setLines((prev) => [...prev, ...newLines]);
+      setInput("");
+      if (result.action) {
+        setOpen(false);
+        setMinimized(true);
+        setTimeout(result.action, 350);
+      }
+      return;
+    }
+
+    // Tier 2: Keyword matching against knowledge base
+    const match = keywordSearch(value);
+    if (match) {
+      setLines((prev) => [
+        ...prev,
+        { type: "input", text: value },
+        { type: "output", text: match.chunk.content },
+      ]);
+      setInput("");
+      return;
+    }
+
+    // Tier 3: In-browser LLM
+    if (!aiEnabled) {
+      setLines((prev) => [
+        ...prev,
+        { type: "input", text: value },
+        {
+          type: "output",
+          text: 'I can answer basic questions, but for deeper conversation type "ai on" to load an in-browser AI model (~200 MB, fully client-side, no servers). Note: this is experimental and runs a small model locally in your browser.',
+        },
+      ]);
+      setInput("");
+      return;
+    }
+
+    setLines((prev) => [
+      ...prev,
+      { type: "input", text: value },
+      { type: "thinking", text: "thinking..." },
+    ]);
     setInput("");
 
-    if (result.action) {
-      // Minimize terminal, then navigate after slide-down animation
-      setOpen(false);
-      setMinimized(true);
-      setTimeout(result.action, 350);
+    try {
+      const response = await generate(value);
+      setLines((prev) => {
+        const updated = prev.slice(0, -1);
+        updated.push({ type: "output", text: response });
+        return updated;
+      });
+    } catch {
+      setLines((prev) => {
+        const updated = prev.slice(0, -1);
+        updated.push({
+          type: "error",
+          text: "AI inference failed. Try a simpler question or type 'help'.",
+        });
+        return updated;
+      });
     }
   }
 
@@ -438,6 +547,8 @@ export default function Terminal() {
                     <span className="text-[#a0a0b0]"> &gt; </span>
                     <span className="text-white">{line.text}</span>
                   </span>
+                ) : line.type === "thinking" ? (
+                  <span className="text-[#da7756] animate-pulse">{line.text}</span>
                 ) : line.type === "error" ? (
                   <span className="text-[#ff6b6b]">{line.text}</span>
                 ) : (
@@ -445,6 +556,19 @@ export default function Terminal() {
                 )}
               </div>
             ))}
+
+            {/* AI loading progress bar */}
+            {aiProgress && (
+              <div className="mb-2">
+                <div className="text-xs text-[#da7756]">{aiProgress}</div>
+                <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-[#2a2a3e]">
+                  <div
+                    className="h-full rounded-full bg-[#da7756] transition-all duration-300"
+                    style={{ width: `${aiProgressPct}%` }}
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Input line */}
             <div className="flex items-center">
