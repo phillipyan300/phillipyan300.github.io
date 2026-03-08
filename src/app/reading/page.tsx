@@ -27,6 +27,28 @@ export default function Reading() {
           />
         </div>
       )}
+
+      <p className="mt-16 text-xs text-zinc-400 dark:text-zinc-500">
+        Interactive book component inspired by{" "}
+        <a
+          href="https://press.stripe.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-zinc-600 dark:hover:text-zinc-300"
+        >
+          Stripe Press
+        </a>
+        . Bookshelf borrowed from{" "}
+        <a
+          href="https://adammaj.com/reading"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-zinc-600 dark:hover:text-zinc-300"
+        >
+          Adam Majmudar
+        </a>
+        .
+      </p>
     </div>
   );
 }

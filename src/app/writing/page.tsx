@@ -7,7 +7,8 @@ const articles = [
       "On Burke, Revolution, and the Architecture of Change Through the Lens of the French Army and Navy",
     date: "Dec 2025",
     href: "https://phillipyan.substack.com/p/institutions-as-startups",
-    image: "/writing/institutions.jpg",
+    image:
+      "https://substack-post-media.s3.amazonaws.com/public/images/053cd302-1378-447d-8e99-9f1c58fde04e_2816x1536.png",
   },
   {
     title: "The Hidden Architecture of On-Chain Capital",
@@ -15,7 +16,8 @@ const articles = [
       "The ERC-4626 techne enabling asynchronous and permissionless on-chain capital markets",
     date: "Nov 2025",
     href: "https://phillipyan.substack.com/p/the-hidden-architecture-of-on-chain",
-    image: "/writing/onchain.jpg",
+    image:
+      "https://substack-post-media.s3.amazonaws.com/public/images/d5a4e441-01dc-44db-bb23-0cc51909c837_1536x1024.png",
   },
   {
     title: "How to Make Internet Money",
@@ -23,21 +25,24 @@ const articles = [
       "How would you design 'money' from first principles, fit for the internet age?",
     date: "Sep 2025",
     href: "https://phillipyan.substack.com/p/how-to-make-internet-money",
-    image: "/writing/money.jpg",
+    image:
+      "https://substack-post-media.s3.amazonaws.com/public/images/b6a8b4ee-0824-4045-856b-7d21c6ce6436_1920x1080.webp",
   },
   {
     title: "The Philosophy Behind Gifts",
     subtitle: "An ontological-normative theory of gifting",
     date: "Jun 2025",
     href: "https://phillipyan.substack.com/p/the-philosophy-behind-gifts",
-    image: "/writing/gifts.jpg",
+    image:
+      "https://substack-post-media.s3.amazonaws.com/public/images/0e0d6a0d-4ab6-43b5-8f1a-857cfccf1d82_501x282.jpeg",
   },
   {
     title: "Pubs as a Third Space",
     subtitle: "Brewed Bonds: How Pubs Create Community and Casual Connection",
     date: "Feb 2025",
     href: "https://phillipyan.substack.com/p/pubs-as-a-third-space",
-    image: "/writing/pubs.jpg",
+    image:
+      "https://substack-post-media.s3.amazonaws.com/public/images/68689d41-c602-4e7c-a688-2afabccbcedf_275x183.jpeg",
   },
   {
     title: "Mispricing Experiences",
@@ -45,7 +50,8 @@ const articles = [
       "Beyond the Price Tag: Hidden Costs and Benefits in Everyday Purchases",
     date: "Feb 2025",
     href: "https://phillipyan.substack.com/p/mispricing-experiences",
-    image: "/writing/mispricing.jpg",
+    image:
+      "https://substack-post-media.s3.amazonaws.com/public/images/a1175a68-c3c8-438f-9f03-620993ea2417_612x530.jpeg",
   },
 ];
 
@@ -72,7 +78,7 @@ export default function Writing() {
             href={article.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group overflow-hidden rounded-lg border border-zinc-200 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-700"
+            className="group overflow-hidden rounded-lg border border-zinc-200 transition-all duration-300 hover:border-zinc-300 hover:scale-[1.03] hover:shadow-lg dark:border-zinc-800 dark:hover:border-zinc-700"
           >
             <div className="relative aspect-[3/2] w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900">
               <Image

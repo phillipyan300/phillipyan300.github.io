@@ -3,6 +3,7 @@ const projects = [
     title: "Pax Automata",
     description:
       "Built the first autonomous agent playing Pax Historia, a fully AI grand strategy game, creating an \"AI-on-AI\" system that ingests full game state via a reverse engineered API, plans from a strategic doctrine, and acts over multi-turn campaigns. Validated by beating the game without human input; launch content reached 2.2K+ views.",
+    link: "https://x.com/PhillipYan2/status/2020912702273749050?s=20",
   },
   {
     title: "FlareInsure",
