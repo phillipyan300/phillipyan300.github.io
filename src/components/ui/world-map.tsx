@@ -169,6 +169,7 @@ export function WorldMap({
       const key = `${c.lat},${c.lng}`;
       if (!seen.has(key)) {
         const projected = baseMap.getPin({ lat: c.lat, lng: c.lng });
+        if (!projected) return;
         seen.set(key, { pin: c, pt: { x: projected.x, y: projected.y } });
       }
     };
