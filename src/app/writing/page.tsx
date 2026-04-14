@@ -2,6 +2,14 @@ import Image from "next/image";
 
 const articles = [
   {
+    title: "Powering the Intelligence Age: America's Arsenal of Energy",
+    subtitle:
+      "The path to AGI is blocked by a looming wall. It's not compute or better models — it's the physical electricity grid that powers all of it.",
+    date: "Apr 2026",
+    href: "https://x.com/PhillipYan2/status/2040860505770742227",
+    image: "/writing/arsenal-of-energy.png",
+  },
+  {
     title: "Institutions as Startups",
     subtitle:
       "On Burke, Revolution, and the Architecture of Change Through the Lens of the French Army and Navy",

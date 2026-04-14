@@ -165,20 +165,18 @@ export default function Bookshelf({ books, onSelectBook }: BookshelfProps) {
         </defs>
       </svg>
 
-      {scroll > 0 && (
-        <div className="absolute -left-9 top-0 h-full z-10">
-          <button
-            className="flex items-center justify-center h-full w-7 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-500"
-            onMouseEnter={() => startScroll(-1)}
-            onMouseLeave={stopScroll}
-            onTouchStart={() => startScroll(-1)}
-            onTouchEnd={stopScroll}
-            aria-label="Scroll left"
-          >
-            <ChevronLeft />
-          </button>
-        </div>
-      )}
+      <div className="absolute -left-9 top-0 h-full z-10" style={{ opacity: scroll > 0 ? 1 : 0, pointerEvents: scroll > 0 ? "auto" : "none" }}>
+        <button
+          className="flex items-center justify-center h-full w-7 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-500"
+          onMouseEnter={() => startScroll(-1)}
+          onMouseLeave={stopScroll}
+          onTouchStart={() => startScroll(-1)}
+          onTouchEnd={stopScroll}
+          aria-label="Scroll left"
+        >
+          <ChevronLeft />
+        </button>
+      </div>
 
       <div
         ref={viewportRef}
@@ -285,20 +283,18 @@ export default function Bookshelf({ books, onSelectBook }: BookshelfProps) {
         })}
       </div>
 
-      {scroll < maxScroll && (
-        <div className="absolute -right-9 top-0 h-full z-10">
-          <button
-            className="flex items-center justify-center h-full w-7 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-500"
-            onMouseEnter={() => startScroll(1)}
-            onMouseLeave={stopScroll}
-            onTouchStart={() => startScroll(1)}
-            onTouchEnd={stopScroll}
-            aria-label="Scroll right"
-          >
-            <ChevronRight />
-          </button>
-        </div>
-      )}
+      <div className="absolute -right-9 top-0 h-full z-10" style={{ opacity: scroll < maxScroll ? 1 : 0, pointerEvents: scroll < maxScroll ? "auto" : "none" }}>
+        <button
+          className="flex items-center justify-center h-full w-7 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-500"
+          onMouseEnter={() => startScroll(1)}
+          onMouseLeave={stopScroll}
+          onTouchStart={() => startScroll(1)}
+          onTouchEnd={stopScroll}
+          aria-label="Scroll right"
+        >
+          <ChevronRight />
+        </button>
+      </div>
     </div>
   );
 }

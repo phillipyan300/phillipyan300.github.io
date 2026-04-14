@@ -112,16 +112,12 @@ export default function Home() {
         </ul>
       </section>
 
-      <div className="mt-10 flex items-center gap-4">
-        <p className="text-sm text-zinc-400 dark:text-zinc-500">
-          Press{" "}
-          <kbd className="rounded border border-zinc-300 px-1.5 py-0.5 text-xs dark:border-zinc-700">
-            Cmd+K
-          </kbd>{" "}
-          to open the terminal.
-        </p>
-        <span className="text-xs text-zinc-400 dark:text-zinc-600">
-          &middot; site under construction
+      <div className="mt-10 inline-flex items-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2 dark:border-zinc-700 dark:bg-zinc-800/50">
+        <kbd className="rounded border border-zinc-300 bg-white px-1.5 py-0.5 text-xs font-medium text-zinc-600 shadow-sm dark:border-zinc-600 dark:bg-zinc-700 dark:text-zinc-300">
+          &#8984;K
+        </kbd>
+        <span className="text-sm text-zinc-500 dark:text-zinc-400">
+          Navigate this site
         </span>
       </div>
     </div>
