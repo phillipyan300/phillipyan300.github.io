@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Terminal from "@/components/Terminal";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -42,6 +43,7 @@ export default function RootLayout({
         <main className="min-h-screen pt-16">{children}</main>
         <Footer />
         <Terminal />
+        <Analytics />
       </body>
     </html>
   );
