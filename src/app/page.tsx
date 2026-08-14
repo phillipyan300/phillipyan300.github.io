@@ -15,14 +15,20 @@ export default function Home() {
       </div>
 
       <p className="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-        Interested in all things{" "}
+        Now at{" "}
         <a
-          href="/energy"
+          href="https://maingen.ai"
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-zinc-900 underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-500 dark:text-zinc-200 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
         >
-          energy
+          Maingen
         </a>
         .
+      </p>
+
+      <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+        Interested in all things energy.
       </p>
 
       <section className="mt-10">
