@@ -27,10 +27,6 @@ export default function Home() {
         .
       </p>
 
-      <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-        Interested in all things energy.
-      </p>
-
       <section className="mt-10">
         <h2 className="text-sm font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500">
           Previously
